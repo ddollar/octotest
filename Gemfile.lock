@@ -1,0 +1,32 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    autotest (4.4.1)
+    crack (0.1.8)
+    diff-lcs (1.1.2)
+    mime-types (1.16)
+    parka (0.5.0)
+      crack
+      rest-client
+      thor
+    rest-client (1.6.1)
+      mime-types (>= 1.16)
+    rspec (2.0.0.rc)
+      rspec-core (= 2.0.0.rc)
+      rspec-expectations (= 2.0.0.rc)
+      rspec-mocks (= 2.0.0.rc)
+    rspec-core (2.0.0.rc)
+    rspec-expectations (2.0.0.rc)
+      diff-lcs (>= 1.1.2)
+    rspec-mocks (2.0.0.rc)
+      rspec-core (= 2.0.0.rc)
+      rspec-expectations (= 2.0.0.rc)
+    thor (0.14.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  autotest
+  parka
+  rspec (= 2.0.0.rc)

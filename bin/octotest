@@ -1,0 +1,18 @@
+#!/bin/bash
+
+RUBY=$1
+shift
+
+echo "Octotest: using $RUBY"
+
+rvm $RUBY exec gem spec bundler >/dev/null 2>&1 || (
+  echo "Octotest: bundler not found, installing"
+  rvm $RUBY exec gem install bundler
+)
+
+rvm $RUBY exec bundle check >/dev/null 2>&1 || (
+  echo "Octotest: gems out of date, running bundle install"
+  rvm $RUBY exec bundle install
+)
+
+rvm $RUBY exec bundle exec ruby $*
