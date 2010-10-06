@@ -1,18 +1,33 @@
-#!/bin/bash
+#!/usr/bin/env ruby
 
-RUBY=$1
-shift
+RUBY = ARGV.shift
 
-echo "Octotest: using $RUBY"
+def log(message)
+  puts "Octotest: #{message}"
+  STDOUT.flush
+end
 
-rvm $RUBY exec gem spec bundler >/dev/null 2>&1 || (
-  echo "Octotest: bundler not found, installing"
-  rvm $RUBY exec gem install bundler
-)
+def conditional(command)
+  run command, true
+  yield unless $?.to_i == 0
+end
 
-rvm $RUBY exec bundle check >/dev/null 2>&1 || (
-  echo "Octotest: gems out of date, running bundle install"
-  rvm $RUBY exec bundle install
-)
+def run(command, silent=false)
+  output = %x{ rvm #{RUBY} exec #{command} 2>&1 }
+  puts output unless silent
+  STDOUT.flush
+end
 
-rvm $RUBY exec bundle exec ruby $*
+log "using #{RUBY}"
+
+conditional("gem spec bundler") do
+  log "bundler not found, installing"
+  run "gem install bundler"
+end
+
+conditional("bundle check") do
+  log "gems out of date, running bundle install"
+  run "bundle install"
+end
+
+run "bundle exec ruby #{ARGV.join(" ")}"
