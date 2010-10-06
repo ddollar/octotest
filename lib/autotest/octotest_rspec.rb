@@ -1,4 +1,4 @@
-require "autotest/rspec2"
+require "autotest/rspec"
 require "octotest/autotest"
 
 class Autotest::OctotestRspec < Autotest::Rspec
