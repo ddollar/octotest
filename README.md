@@ -1,7 +1,7 @@
 # Octotest
 
-Octotest will run your tests in multiple rubies. Octotest only works for
-projects using [bundler](http://github.com/carlhuda/bundler).
+Octotest will run your tests in multiple rubies using RVM. Octotest only works 
+for projects using [bundler](http://github.com/carlhuda/bundler).
 
 ## Installation
 
